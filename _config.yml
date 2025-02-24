@@ -1,7 +1,7 @@
 title: My Personal Page
 description: "A personal website showcasing my programming portfolio and blog posts."
 baseurl: "" # if you plan to host at https://yourusername.github.io, leave this empty.
-url: "https://yourusername.github.io" # replace with your GitHub Pages URL
+url: "https://dagim19.github.io" # replace with your GitHub Pages URL
 
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
