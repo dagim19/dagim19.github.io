@@ -125,6 +125,40 @@ export default function App() {
         setShotIndex(0);
     };
 
+    // Scroll-spy: update URL hash to match whatever id is currently in view.
+    useEffect(() => {
+        const targets = Array.from(document.querySelectorAll<HTMLElement>("main [id], section[id]"));
+        if (targets.length === 0) return;
+
+        const visible = new Map<Element, number>();
+        let current = "";
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        visible.set(entry.target, entry.intersectionRatio);
+                    } else {
+                        visible.delete(entry.target);
+                    }
+                }
+                if (visible.size === 0) return;
+                const top = Array.from(visible.keys()).sort(
+                    (a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top
+                )[0];
+                const id = top.id;
+                if (id && id !== current) {
+                    current = id;
+                    history.replaceState(null, "", `#${id}`);
+                }
+            },
+            { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.5, 1] }
+        );
+
+        targets.forEach((t) => observer.observe(t));
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white pb-24">
             {/* NAV */}
