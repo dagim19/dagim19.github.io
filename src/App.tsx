@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useCallback } from "react";
 
 type ClientProject = {
+    slug: string;
     label: string;
     title: string;
     platform: string;
@@ -14,6 +15,7 @@ type ClientProject = {
 
 const clientProjects: ClientProject[] = [
     {
+        slug: "mobile-app",
         label: "01",
         title: "Live Streaming & VOD Mobile App",
         platform: "React Native (Expo) · iOS & Android",
@@ -31,6 +33,7 @@ const clientProjects: ClientProject[] = [
         screenshots: ["/screenshots/mobile/1.jpg", "/screenshots/mobile/2.jpg", "/screenshots/mobile/3.jpg", "/screenshots/mobile/4.jpg"],
     },
     {
+        slug: "admin-dashboard",
         label: "02",
         title: "Content Management & Analytics Dashboard",
         platform: "Next.js · Web",
@@ -49,6 +52,7 @@ const clientProjects: ClientProject[] = [
         screenshots: ["/screenshots/admin/1.jpg", "/screenshots/admin/2.jpg", "/screenshots/admin/3.jpg", "/screenshots/admin/4.jpg"],
     },
     {
+        slug: "desktop-encoder",
         label: "03",
         title: "Desktop Video Encoder",
         platform: "Electron · Windows / macOS",
@@ -65,6 +69,7 @@ const clientProjects: ClientProject[] = [
         screenshots: ["/screenshots/encoder/1.jpg", "/screenshots/encoder/2.jpg", "/screenshots/encoder/3.jpg"],
     },
     {
+        slug: "streaming-api",
         label: "04",
         title: "Streaming Platform API",
         platform: "Fastify · Node.js · TypeScript",
@@ -186,7 +191,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="py-32"
+                    className="py-32 scroll-mt-24"
                 >
                     <div className="text-sm font-bold uppercase tracking-widest mb-6">What I bring</div>
                     <h2 className="text-[3rem] leading-[1] md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 uppercase">
@@ -239,7 +244,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="py-32"
+                    className="py-32 scroll-mt-24"
                 >
                     <div className="text-sm font-bold uppercase tracking-widest mb-6">Where I've worked</div>
                     <h2 className="text-[3rem] leading-[1] md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 uppercase">Experience</h2>
@@ -250,6 +255,7 @@ export default function App() {
                     <div className="flex flex-col gap-40">
                         {[
                             {
+                                slug: "perago-systems",
                                 date: "Apr 2025 – Present",
                                 company: "Perago Systems",
                                 role: "Software Developer",
@@ -262,6 +268,7 @@ export default function App() {
                                 ]
                             },
                             {
+                                slug: "systems-edge",
                                 date: "2025 – Present",
                                 company: "Systems Edge",
                                 role: "DevOps Engineer",
@@ -273,6 +280,7 @@ export default function App() {
                                 ]
                             },
                             {
+                                slug: "channel-1-ethiopia",
                                 date: "2025 – Present",
                                 company: "Channel 1 Ethiopia",
                                 role: "Full Stack Developer & Solutions Architect",
@@ -284,6 +292,7 @@ export default function App() {
                                 ]
                             },
                             {
+                                slug: "harambeet",
                                 date: "2025",
                                 company: "Harambeet",
                                 role: "Full Stack Developer & DevOps Engineer",
@@ -295,7 +304,7 @@ export default function App() {
                                 ]
                             }
                         ].map((exp, i) => (
-                            <div key={i} className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-20">
+                            <div key={i} id={`experience-${exp.slug}`} className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-20">
                                 <div>
                                     <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">{exp.date}</div>
                                     <div className="text-2xl lg:text-3xl font-black tracking-tighter uppercase mb-4 leading-none">{exp.company}</div>
@@ -326,7 +335,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="py-32"
+                    className="py-32 scroll-mt-24"
                 >
                     <div className="text-sm font-bold uppercase tracking-widest mb-6">Shipped for clients</div>
                     <h2 className="text-[3rem] leading-[1] md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 uppercase">
@@ -341,7 +350,7 @@ export default function App() {
 
                     <div className="flex flex-col gap-32">
                         {clientProjects.map((proj, i) => (
-                            <div key={i} className="grid grid-cols-1 lg:grid-cols-[120px_1fr] gap-8 lg:gap-16 items-start border-t-2 border-black pt-12">
+                            <div key={i} id={`work-${proj.slug}`} className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-[120px_1fr] gap-8 lg:gap-16 items-start border-t-2 border-black pt-12">
                                 <div className="text-5xl lg:text-7xl font-black tracking-tighter leading-none">{proj.label}</div>
                                 <div className="max-w-4xl">
                                     <div className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">{proj.platform}</div>
@@ -386,7 +395,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="py-32"
+                    className="py-32 scroll-mt-24"
                 >
                     <div className="text-sm font-bold uppercase tracking-widest mb-6">Side work</div>
                     <h2 className="text-[3rem] leading-[1] md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 uppercase">
@@ -399,6 +408,7 @@ export default function App() {
                     <div className="flex flex-col gap-40">
                         {[
                             {
+                                slug: "amharic-gpt-2",
                                 emoji: "🇪🇹",
                                 title: "Amharic GPT-2",
                                 link: "https://github.com/dagim19/amharic-gpt-2-small",
@@ -406,6 +416,7 @@ export default function App() {
                                 tags: ["Python", "NLP", "GPT-2", "Transformers"]
                             },
                             {
+                                slug: "amharic-bpe-tokenizer",
                                 emoji: "🔤",
                                 title: "Amharic BPE Tokenizer",
                                 link: "https://github.com/dagim19/amharic-tokenizer-bpe",
@@ -413,6 +424,7 @@ export default function App() {
                                 tags: ["Python", "BPE", "HuggingFace", "Amharic"]
                             },
                             {
+                                slug: "reverse-dictionary",
                                 emoji: "📖",
                                 title: "Reverse Dictionary",
                                 link: "https://github.com/dagim19/reverse_dictionary",
@@ -420,7 +432,7 @@ export default function App() {
                                 tags: ["Python", "Semantic Search", "NLP"]
                             },
                         ].map((proj, i) => (
-                            <div key={i} className="grid grid-cols-1 lg:grid-cols-[100px_1fr_auto] gap-8 md:gap-16 items-start">
+                            <div key={i} id={`project-${proj.slug}`} className="scroll-mt-32 grid grid-cols-1 lg:grid-cols-[100px_1fr_auto] gap-8 md:gap-16 items-start">
                                 <div className="text-6xl grayscale hidden lg:block">{proj.emoji}</div>
                                 <div className="max-w-3xl">
                                     <div className="flex items-center gap-6 mb-8">
@@ -453,7 +465,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="py-32"
+                    className="py-32 scroll-mt-24"
                 >
                     <div className="text-sm font-bold uppercase tracking-widest mb-6">Let's work</div>
                     <h2 className="text-[3rem] leading-[1] md:text-[5.5rem] lg:text-[7rem] font-black tracking-tighter mb-10 uppercase">
